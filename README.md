@@ -7,7 +7,7 @@ https://spring.io/guides/serving-web-content
 
 https://elasticsearch/explore
 
-deploy key github
+deploy key github ssh
 
 
 
