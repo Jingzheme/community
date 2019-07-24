@@ -2,6 +2,8 @@ package cn.huajiahao.community.controller;
 
 import cn.huajiahao.community.dto.AccessTokenDTO;
 import cn.huajiahao.community.dto.GithubUser;
+import cn.huajiahao.community.mapper.UserMapper;
+import cn.huajiahao.community.model.User;
 import cn.huajiahao.community.provider.GithubProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.UUID;
 
 /**
  * @Description TODO
@@ -22,6 +25,9 @@ public class AuthorizeController {
 
     @Autowired
     private GithubProvider githubProvider;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Value("${github.client.id}")
     private String clientId;
@@ -41,10 +47,17 @@ public class AuthorizeController {
         accessTokenDTO.setRedirect_url(redirectUri);
         accessTokenDTO.setState(state);
         String accessToken = githubProvider.getAccessToken(accessTokenDTO);
-        GithubUser user = githubProvider.getUser(accessToken);
-        if(user!=null){
+        GithubUser githubUser = githubProvider.getUser(accessToken);
+        if(githubUser!=null){
+            User user = new User();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubUser.getName());
+            user.setAccountId(String.valueOf(githubUser.getId()));
+            user.setGmtCreate(System.currentTimeMillis());
+            user.setGmtModified(user.getGmtModified());
+            userMapper.insert(user);
             // 登录成功，写cookie，session
-            request.getSession().setAttribute("user",user);
+            request.getSession().setAttribute("user",githubUser);
             //重定向
             return "redirect:/";
 
