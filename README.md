@@ -7,6 +7,8 @@
 
 [es](https://elasticsearch/explore)
 
+[thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#parameterizable-fragment-signatures)
+
 
 
 deploy key github ssh
@@ -30,6 +32,7 @@ deploy key github
 [Okhttp](https://square.github.io/okhttp/)
 
 [flywaydb](https://flywaydb.org/getstarted/firststeps/maven)
+[lombok](https://www.projectlombok.org/features/all)
 
 
 ##脚本

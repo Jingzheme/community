@@ -3,6 +3,9 @@ package cn.huajiahao.community.mapper;
 import cn.huajiahao.community.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @Description TODO
@@ -14,4 +17,7 @@ public interface QuestionMapper {
 
     @Insert("insert into question(title,description,creator,gmt_create,gmt_modified,tag)values(#{title},#{description},#{creator},#{gmtCreate},#{gmtModified},#{tag})")
     void create(Question question);
+
+    @Select("select * from question")
+    List<Question> list();
 }
