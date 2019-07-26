@@ -8,6 +8,7 @@ import lombok.Data;
  * @Date 2019/7/25 14:58
  * @Created by 11744
  */
+
 @Data
 public class QuestionDTO {
     private Integer id;
