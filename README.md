@@ -10,6 +10,8 @@
 [thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#parameterizable-fragment-signatures)
 
 
+[Jquery3.4.1](https://code.jquery.com/jquery-3.4.1.min.js)
+
 
 deploy key github ssh
 =======
