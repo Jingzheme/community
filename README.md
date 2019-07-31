@@ -3,7 +3,7 @@
 ## 资料
 [Spring 文档](https://spring.io/guides)
 
-[Soring web](https://spring.io/guides/serving-web-content)
+[Spring web](https://spring.io/guides/serving-web-content)
 
 [es](https://elasticsearch/explore)
 
