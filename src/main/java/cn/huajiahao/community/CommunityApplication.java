@@ -5,8 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("cn.huajiahao.co" +
-        "mmunity.mapper")
+@MapperScan("cn.huajiahao.community.mapper")
 public class CommunityApplication {
 
     public static void main(String[] args) {

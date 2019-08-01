@@ -4,6 +4,7 @@ import cn.huajiahao.community.dto.PaginationDTO;
 import cn.huajiahao.community.dto.QuestionDTO;
 import cn.huajiahao.community.exception.CustomizeErrorCode;
 import cn.huajiahao.community.exception.CustomizeException;
+import cn.huajiahao.community.mapper.QuestionExtMapper;
 import cn.huajiahao.community.mapper.QuestionMapper;
 import cn.huajiahao.community.mapper.UserMapper;
 import cn.huajiahao.community.model.Question;
@@ -27,6 +28,8 @@ public class QuestionService {
     
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
     
     @Autowired
     private UserMapper userMapper;
@@ -123,22 +126,33 @@ public class QuestionService {
             //创建
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
+            question.setViewCount(0);
+            question.setLikeCount(0);
+            question.setCommentCount(0);
             questionMapper.insert(question);
         }else {
             //更新
-            question.setGmtModified(question.getGmtCreate());
-
             Question updateQuestion = new Question();
             updateQuestion.setGmtModified(System.currentTimeMillis());
             updateQuestion.setTitle(question.getTitle());
             updateQuestion.setDescription(question.getDescription());
             updateQuestion.setTag(question.getTag());
+
             QuestionExample example = new QuestionExample();
-            example.createCriteria().andCreatorEqualTo(question.getId());
+            example.createCriteria().andIdEqualTo(question.getId());
             int updated = questionMapper.updateByExampleSelective(updateQuestion, example);
             if (updated !=1){
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+
+
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
