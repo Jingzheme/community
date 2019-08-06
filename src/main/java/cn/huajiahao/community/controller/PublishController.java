@@ -52,7 +52,7 @@ public class PublishController {
 
     if (title==null||title==""){
         model.addAttribute("error","标题不能为空");
-        return "publsih";
+        return "publish";
     }
 
     if (description==null||description==""){

@@ -14,6 +14,9 @@ body{
     width: 40px;
     height: 40px;
 }
+.media-body{
+    padding-top: 10px;
+}
 .text-desc{
     font-size:12px;
     font-weight:normal;
@@ -29,4 +32,9 @@ body{
 }
 .jumbotron{
     margin: 50px;
+}
+
+/*上右下左顺时针*/
+.comment{
+    margin: 10px 10px;
 }
